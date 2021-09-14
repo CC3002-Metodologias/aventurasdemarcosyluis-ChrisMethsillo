@@ -1,0 +1,5 @@
+module:com.example.aventurasdemarcoyluis
+com.example.aventurasdemarcoyluis.model
+com.example.aventurasdemarcoyluis.model.items
+com.example.aventurasdemarcoyluis.model.npc
+com.example.aventurasdemarcoyluis.model.playablechar
