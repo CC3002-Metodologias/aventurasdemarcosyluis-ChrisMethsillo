@@ -78,7 +78,7 @@ public class Marco extends AbstractPlayers implements PlayersCombat {
      */
     @Override
     public void attackHammer(EnemiesCombat enemy) {
-        boolean probability=Math.random()<=0.25;
+        boolean probability=Math.random()>=0.25;
         if(!isDeath() & probability & hasEnoughFp(2)){
             double dmg=1.5*this.getAtk()*this.getLvl();
             enemy.getAtkByMarcoHammer(dmg);
