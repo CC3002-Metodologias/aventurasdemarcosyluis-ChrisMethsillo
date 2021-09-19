@@ -1,7 +1,5 @@
 package com.example.aventurasdemarcoyluis.model;
 
-import com.example.aventurasdemarcoyluis.model.npc.Enemies;
-import com.example.aventurasdemarcoyluis.model.npc.EnemyType;
 
 /**
  * This class represent a playable character in the game.
@@ -16,6 +14,7 @@ public abstract class AbstractPlayers implements ItemUse{
     private double hp;
     private static double MAXHP;
     private int fp;
+    private static int MAXFP;
     private int lvl;
     private boolean inmortal=false;
     private PlayerType character;
@@ -27,13 +26,15 @@ public abstract class AbstractPlayers implements ItemUse{
      * @param HP  heal points
      * @param maxHP Max heal points
      * @param FP  fight points
+     * @param maxFP Max fight points
      * @param LVL level of the Unit
      * @param CHARACTER Character Type
      */
-    public AbstractPlayers(int ATK, int DEF, double HP, double maxHP, int FP, int LVL, PlayerType CHARACTER){
+    public AbstractPlayers(int ATK, int DEF, double HP, double maxHP, int FP, int maxFP, int LVL, PlayerType CHARACTER){
         atk=ATK;
         def=DEF;
         MAXHP=maxHP;
+        MAXFP=maxFP;
         hp=HP;
         fp=FP;
         lvl=LVL;
@@ -132,7 +133,12 @@ public abstract class AbstractPlayers implements ItemUse{
      * @param fp fp to increase
      */
     protected void increaseFp(int fp){
-        setFp(getFp()+fp);
+        if(getFp()+fp>MAXFP){
+            setFp(MAXFP);
+        }
+        else{
+            setFp(getFp()+fp);
+        }
     }
 
     /**
@@ -202,6 +208,7 @@ public abstract class AbstractPlayers implements ItemUse{
     public void useRedMushroom() {
         increaseHp(0.1*MAXHP);
     }
+
     /**
      * {@inheritDoc}
      * @param o Object to compare

@@ -1,8 +1,6 @@
 module com.example.aventurasdemarcoyluis {
     requires javafx.controls;
     requires javafx.fxml;
-
-
     exports com.example.aventurasdemarcoyluis.model.npc;
     opens com.example.aventurasdemarcoyluis.model.npc to javafx.fxml;
     exports com.example.aventurasdemarcoyluis.model.playablechar;

@@ -2,7 +2,7 @@ package com.example.aventurasdemarcoyluis.model;
 import com.example.aventurasdemarcoyluis.model.npc.EnemiesCombat;
 
 /**
- * This interface implements different methods in charge of giving you a combat system in the game.
+ * This interface implements different methods for the combat system in the game.
  * Different types of attacks are implemented for the character use, and attacks that can be received.
  * @author Christian Jesus Parra Cofre
  * @see com.example.aventurasdemarcoyluis.model.npc.Enemies

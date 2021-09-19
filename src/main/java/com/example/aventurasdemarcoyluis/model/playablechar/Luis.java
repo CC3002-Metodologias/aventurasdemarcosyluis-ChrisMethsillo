@@ -12,17 +12,18 @@ import com.example.aventurasdemarcoyluis.model.npc.*;
  */
 public class Luis extends AbstractPlayers implements PlayersCombat {
     /**
-     * Creates a new luis
+     * Creates a new Luis
      *
      * @param ATK attack points
      * @param DEF defense points
      * @param HP  heal points
-     * @param MaxHP  Max heal points
+     * @param maxHP Max heal points
      * @param FP  fight points
+     * @param maxFP Max fight points
      * @param LVL level of the Unit
      */
-    public Luis(int ATK, int DEF, double HP,double MaxHP, int FP, int LVL) {
-        super(ATK, DEF, HP, MaxHP, FP, LVL, PlayerType.LUIS);
+    public Luis(int ATK, int DEF, double HP, double maxHP, int FP, int maxFP, int LVL) {
+        super(ATK, DEF, HP, maxHP, FP, maxFP, LVL, PlayerType.LUIS);
     }
 
     /**
