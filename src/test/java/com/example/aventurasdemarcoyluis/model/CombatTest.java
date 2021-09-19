@@ -18,8 +18,8 @@ class CombatTest {
 
     @BeforeEach
     void setUp(){
-        luis=new Luis(5,10,10,10,10,10);
-        marco=new Marco(5,10,10,10,10,10);
+        luis=new Luis(5,10,10,10,10,10,10);
+        marco=new Marco(5,10,10,10,10,10,10);
 
         boo=new Boo(5,10,10,10);
         goomba=new Goomba(5,10,10,10);

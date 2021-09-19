@@ -14,10 +14,10 @@ class PlayersTest {
 
     @BeforeEach
     void setUp() {
-        marco1Test=new Marco(3,3,100,100,20,5);
-        marco2Test=new Marco(3,3,100,100,20,5);
-        luis1Test=new Luis(3,3,100,100,20,5);
-        luis2Test=new Luis(3,3,100,100,20,5);
+        marco1Test=new Marco(3,3,100,100,20,25,5);
+        marco2Test=new Marco(3,3,100,100,20,25,5);
+        luis1Test=new Luis(3,3,100,100,20,25,5);
+        luis2Test=new Luis(3,3,100,100,20,25,5);
     }
 
     @Test
@@ -90,10 +90,10 @@ class PlayersTest {
     @Test
     void isDeath() {
         assertTrue(!marco1Test.isDeath());
-        Marco marcoDeath=new Marco(1,1,0,100,1,1);
+        Marco marcoDeath=new Marco(1,1,0,100,1,1,1);
         assertTrue(marcoDeath.isDeath());
         assertTrue(!luis1Test.isDeath());
-        Luis luisDeath=new Luis(1,1,0,100,1,1);
+        Luis luisDeath=new Luis(1,1,0,100,1,1,1);
         assertTrue(luisDeath.isDeath());
 
     }
@@ -121,6 +121,10 @@ class PlayersTest {
         luis1Test.useHoneySyrup();
         assertEquals(23, marco1Test.getFp());
         assertEquals(23, luis1Test.getFp());
+        marco1Test.useHoneySyrup();
+        luis1Test.useHoneySyrup();
+        assertEquals(25, marco1Test.getFp());
+        assertEquals(25, luis1Test.getFp());
 
     }
 
@@ -136,7 +140,7 @@ class PlayersTest {
 
     @Test
     void useRedMushroom() {
-        Marco marcoLowHP=new Marco(1,1,10,100,1,1);
+        Marco marcoLowHP=new Marco(1,1,10,100,1,1,1);
         assertEquals(10,marcoLowHP.getHp());
         marcoLowHP.useRedMushroom();
         assertEquals(20,marcoLowHP.getHp());
