@@ -28,7 +28,7 @@ public class Spiny extends Enemies implements EnemiesCombat{
     public void attack(PlayersCombat player) {
         if(!isDeath()){
             double dmg=0.75*this.getAtk()*this.getLvl();
-            player.getAtkByGoomba(dmg);
+            player.getAtkBySpiny(dmg);
         }
     }
 
