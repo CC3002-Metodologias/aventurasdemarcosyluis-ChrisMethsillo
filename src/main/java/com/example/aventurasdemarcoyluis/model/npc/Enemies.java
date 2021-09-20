@@ -1,5 +1,7 @@
 package com.example.aventurasdemarcoyluis.model.npc;
 
+import java.util.Objects;
+
 /**
  * This class represent an enemy in the game. This non-playable character has different features as life points and levels.
  * It also possesses combat characteristics such as attack, defense and fighting points.
@@ -109,6 +111,15 @@ public abstract class Enemies {
         if (this == o) return true;
         if (!(o instanceof Enemies)) return false;
         Enemies enemies = (Enemies) o;
-        return atk == enemies.getAtk() && def == enemies.getDef() && hp == enemies.getHp() && lvl == enemies.getLvl() && enemies.getType()==type;
+        return atk == enemies.atk && def == enemies.def && Double.compare(enemies.hp, hp) == 0 && lvl == enemies.lvl && type == enemies.type;
+    }
+
+    /**
+     * {@inheritDoc}
+     * @return hashCode
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(atk, def, hp, lvl, type);
     }
 }

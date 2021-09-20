@@ -1,6 +1,14 @@
 package com.example.aventurasdemarcoyluis.model;
 
 
+import com.example.aventurasdemarcoyluis.model.items.HoneySyrup;
+import com.example.aventurasdemarcoyluis.model.items.Item;
+import com.example.aventurasdemarcoyluis.model.items.ItemType;
+
+import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Objects;
+
 /**
  * This class represent a playable character in the game.
  * A playable character has many features, as life points and levels.
@@ -18,6 +26,7 @@ public abstract class AbstractPlayers implements ItemUse{
     private int lvl;
     private boolean inmortal=false;
     private PlayerType character;
+    private Hashtable<ItemType, ArrayList<Item> > Inventory = new Hashtable<>();
 
     /**
      * Creates a new player
@@ -124,7 +133,7 @@ public abstract class AbstractPlayers implements ItemUse{
     /**
      *Make the character inmortal.
      */
-    protected void makeInmortal(){
+    public void makeInmortal(){
         this.inmortal=true;
     }
 
@@ -132,13 +141,21 @@ public abstract class AbstractPlayers implements ItemUse{
      *Increase the character fp
      * @param fp fp to increase
      */
-    protected void increaseFp(int fp){
+    public void increaseFp(int fp){
         if(getFp()+fp>MAXFP){
             setFp(MAXFP);
         }
         else{
             setFp(getFp()+fp);
         }
+    }
+
+    /**
+     * Returns the max hp of the player
+     * @return MAXHP
+     */
+    public double MAXHP(){
+        return MAXHP;
     }
 
     /**
@@ -155,7 +172,7 @@ public abstract class AbstractPlayers implements ItemUse{
      *Increase the character hp
      * @param hp hp to increase
      */
-    protected void increaseHp(double hp){
+    public void increaseHp(double hp){
         if(getHp()+hp>MAXHP){
             setHp(MAXHP);
         }
@@ -180,13 +197,53 @@ public abstract class AbstractPlayers implements ItemUse{
     }
 
     /**
+     * Add a item to the inventory
+     * @param item
+     */
+    public void giveItem(Item item){
+        if(Inventory.get(item.getType())==null){
+            ArrayList<Item> newArray=new ArrayList<>();
+            newArray.add(item);
+            Inventory.put(item.getType(),newArray);
+        }
+        else{
+            Inventory.get(item.getType()).add(item);
+        }
+    }
+
+    /**
+     * Check if the player has a specified item
+     * @param item ItemType to check
+     * @return <code>true<code/> if the item exists <code>false<code/>otherwise
+     */
+    public boolean haveAItem(ItemType item){
+        if(Inventory.get(item)==null){
+            return false;
+        }
+        if(Inventory.get(item).isEmpty()){
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * Uses a item in the inventory
+     * @param item ItemType to use
+     */
+    private void useItem(ItemType item){
+        if(this.haveAItem(item)){
+            Inventory.get(item).get(0).use(this);
+            Inventory.get(item).remove(0);
+        }
+    }
+    /**
      *Use the HoneySyrup item
      * @see com.example.aventurasdemarcoyluis.model.items.Item
      * @see com.example.aventurasdemarcoyluis.model.items.HoneySyrup
      */
     @Override
     public void useHoneySyrup() {
-        increaseFp(3);
+        useItem(ItemType.HONEYSYRUP);
     }
 
     /**
@@ -196,7 +253,7 @@ public abstract class AbstractPlayers implements ItemUse{
      */
     @Override
     public void useStar() {
-        makeInmortal();
+        useItem(ItemType.STAR);
     }
 
     /**
@@ -206,20 +263,31 @@ public abstract class AbstractPlayers implements ItemUse{
      */
     @Override
     public void useRedMushroom() {
-        increaseHp(0.1*MAXHP);
+        useItem(ItemType.REDMUSHROOM);
     }
 
     /**
      * {@inheritDoc}
-     * @param o Object to compare
-     * @return <code>true</code> If are the same object <code>false</code> otherwise
+     * @param o object to compare
+     * @return <code>true<code/> if are equals <code>false<code/>otherwise
      */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof AbstractPlayers)) return false;
         AbstractPlayers players = (AbstractPlayers) o;
-        return atk == players.atk && def == players.def && hp == players.hp && lvl == players.lvl && MAXHP == players.MAXHP
-                && fp== players.fp && inmortal==players.inmortal && character==players.character;
+        return atk == players.atk && def == players.def && Double.compare(players.hp, hp) == 0 && fp == players.fp && lvl == players.lvl && inmortal == players.inmortal && character == players.character;
     }
+
+    /**
+     * {@inheritDoc}
+     * @return hashCode of this object
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(atk, def, hp, fp, lvl, inmortal, character);
+    }
+
+
+
 }

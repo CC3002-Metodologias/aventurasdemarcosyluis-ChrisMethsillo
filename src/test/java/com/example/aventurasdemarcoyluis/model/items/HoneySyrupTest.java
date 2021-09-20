@@ -47,4 +47,28 @@ class HoneySyrupTest {
         assertNotEquals(hs,st2);
         assertNotEquals(hs,rm2);
     }
+
+    @Test
+    void useInPlayer(){
+        assertFalse(marco.haveAItem(ItemType.HONEYSYRUP));
+        assertFalse(luis.haveAItem(ItemType.HONEYSYRUP));
+
+        marco.giveItem(hs);
+        luis.giveItem(hs);
+
+        assertTrue(marco.haveAItem(ItemType.HONEYSYRUP));
+        assertTrue(luis.haveAItem(ItemType.HONEYSYRUP));
+
+        assertEquals(5, marco.getFp());
+        assertEquals(5, luis.getFp());
+
+        marco.useHoneySyrup();
+        luis.useHoneySyrup();
+
+        assertEquals(8, marco.getFp());
+        assertEquals(8, luis.getFp());
+
+        assertFalse(marco.haveAItem(ItemType.HONEYSYRUP));
+        assertFalse(luis.haveAItem(ItemType.HONEYSYRUP));
+    }
 }

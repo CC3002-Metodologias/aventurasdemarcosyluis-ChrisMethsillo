@@ -1,4 +1,5 @@
 package com.example.aventurasdemarcoyluis.model.items;
+import com.example.aventurasdemarcoyluis.model.AbstractPlayers;
 import com.example.aventurasdemarcoyluis.model.ItemUse;
 
 /**
@@ -20,8 +21,8 @@ public class HoneySyrup implements Item{
      * @param player player who will use the object
      */
     @Override
-    public void use(ItemUse player) {
-        player.useHoneySyrup();
+    public void use(AbstractPlayers player) {
+        player.increaseFp(3);
     }
 
     /**

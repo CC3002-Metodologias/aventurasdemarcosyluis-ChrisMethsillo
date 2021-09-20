@@ -58,4 +58,42 @@ class StarTest {
         assertNotEquals(hs2,st);
         assertNotEquals(st,rm2);
     }
+    @Test
+    void useInPlayer(){
+        assertFalse(marco.haveAItem(ItemType.STAR));
+        assertFalse(luis.haveAItem(ItemType.STAR));
+
+        marco.giveItem(st);
+        luis.giveItem(st);
+
+        assertTrue(marco.haveAItem(ItemType.STAR));
+        assertTrue(luis.haveAItem(ItemType.STAR));
+
+        assertFalse(marco.isInmortal());
+        assertFalse(luis.isInmortal());
+
+        assertEquals(10, marco.getHp());
+        assertEquals(10, luis.getHp());
+
+        marco.getAtkBySpiny(10);
+        luis.getAtkBySpiny(10);
+
+        assertEquals(9, marco.getHp());
+        assertEquals(9, luis.getHp());
+
+        marco.useStar();
+        luis.useStar();
+
+        assertTrue(marco.isInmortal());
+        assertTrue(luis.isInmortal());
+
+        marco.getAtkBySpiny(10);
+        luis.getAtkBySpiny(10);
+
+        assertEquals(9, marco.getHp());
+        assertEquals(9, luis.getHp());
+
+        assertFalse(marco.haveAItem(ItemType.STAR));
+        assertFalse(luis.haveAItem(ItemType.STAR));
+    }
 }

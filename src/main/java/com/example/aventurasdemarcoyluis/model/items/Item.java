@@ -1,4 +1,5 @@
 package com.example.aventurasdemarcoyluis.model.items;
+import com.example.aventurasdemarcoyluis.model.AbstractPlayers;
 import com.example.aventurasdemarcoyluis.model.ItemUse;
 
 /**
@@ -11,7 +12,7 @@ public interface Item {
      * Use the item in a player.
      * @param player player who will use the object
      */
-    void use(ItemUse player);
+    void use(AbstractPlayers player);
 
     /**
      * Return the item typeplayer who will use the object

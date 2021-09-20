@@ -34,10 +34,13 @@ class PlayersTest {
     }
 
     @Test
-    void testEquals() {
+    void testEqualsAndHashCode() {
         assertTrue(marco1Test.equals(marco2Test));
         assertTrue(luis1Test.equals(luis2Test));
         assertFalse(luis1Test.equals(marco1Test));
+        assertEquals(marco1Test.hashCode(),marco2Test.hashCode());
+        assertEquals(luis1Test.hashCode(),luis2Test.hashCode());
+        assertNotEquals(luis1Test.hashCode(),marco2Test.hashCode());
     }
 
     @Test
@@ -111,39 +114,6 @@ class PlayersTest {
         assertTrue(!luis1Test.hasEnoughFp(21));
         assertTrue(marco1Test.hasEnoughFp(20));
         assertTrue(luis1Test.hasEnoughFp(20));
-    }
-
-    @Test
-    void useHoneySyrup() {
-        assertEquals(20, marco1Test.getFp());
-        assertEquals(20, luis1Test.getFp());
-        marco1Test.useHoneySyrup();
-        luis1Test.useHoneySyrup();
-        assertEquals(23, marco1Test.getFp());
-        assertEquals(23, luis1Test.getFp());
-        marco1Test.useHoneySyrup();
-        luis1Test.useHoneySyrup();
-        assertEquals(25, marco1Test.getFp());
-        assertEquals(25, luis1Test.getFp());
-
-    }
-
-    @Test
-    void useStar() {
-        assertTrue(!marco1Test.isInmortal());
-        assertTrue(!luis1Test.isInmortal());
-        marco1Test.useStar();
-        luis1Test.useStar();
-        assertTrue(marco1Test.isInmortal());
-        assertTrue(luis1Test.isInmortal());
-    }
-
-    @Test
-    void useRedMushroom() {
-        Marco marcoLowHP=new Marco(1,1,10,100,1,1,1);
-        assertEquals(10,marcoLowHP.getHp());
-        marcoLowHP.useRedMushroom();
-        assertEquals(20,marcoLowHP.getHp());
     }
 
 }

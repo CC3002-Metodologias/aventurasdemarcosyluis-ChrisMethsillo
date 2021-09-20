@@ -1,5 +1,6 @@
 package com.example.aventurasdemarcoyluis.model.items;
 
+import com.example.aventurasdemarcoyluis.model.AbstractPlayers;
 import com.example.aventurasdemarcoyluis.model.ItemUse;
 import com.example.aventurasdemarcoyluis.model.npc.Enemies;
 
@@ -22,8 +23,8 @@ public class Star implements Item{
      * @param player player who will use the object
      */
     @Override
-    public void use(ItemUse player) {
-        player.useStar();
+    public void use(AbstractPlayers player) {
+        player.makeInmortal();
     }
 
     /**

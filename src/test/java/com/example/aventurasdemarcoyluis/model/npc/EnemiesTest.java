@@ -89,7 +89,7 @@ class EnemiesTest {
     }
 
     @Test
-    void testEquals() {
+    void testEqualsAndHashCode() {
         Boo boo2=new Boo(5,10,10,10);
         Goomba goomba2=new Goomba(5,10,10,10);
         Spiny spiny2=new Spiny(5,10,10,10);
@@ -98,5 +98,8 @@ class EnemiesTest {
         assertEquals(spiny2,spiny);
         assertNotEquals(boo,goomba);
         assertNotEquals(boo,spiny);
+        assertEquals(spiny2.hashCode(),spiny.hashCode());
+        assertEquals(boo2.hashCode(),boo.hashCode());
+        assertEquals(goomba2.hashCode(),goomba.hashCode());
     }
 }
