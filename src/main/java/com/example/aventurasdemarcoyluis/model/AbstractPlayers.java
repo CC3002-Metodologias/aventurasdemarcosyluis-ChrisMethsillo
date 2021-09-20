@@ -198,7 +198,7 @@ public abstract class AbstractPlayers implements ItemUse{
 
     /**
      * Add a item to the inventory
-     * @param item
+     * @param item item to add
      */
     public void giveItem(Item item){
         if(Inventory.get(item.getType())==null){
@@ -214,7 +214,7 @@ public abstract class AbstractPlayers implements ItemUse{
     /**
      * Check if the player has a specified item
      * @param item ItemType to check
-     * @return <code>true<code/> if the item exists <code>false<code/>otherwise
+     * @return <code>true</code> if the item exists <code>false</code>otherwise
      */
     public boolean haveAItem(ItemType item){
         if(Inventory.get(item)==null){
@@ -269,7 +269,7 @@ public abstract class AbstractPlayers implements ItemUse{
     /**
      * {@inheritDoc}
      * @param o object to compare
-     * @return <code>true<code/> if are equals <code>false<code/>otherwise
+     * @return <code>true</code> if are equals <code>false</code>otherwise
      */
     @Override
     public boolean equals(Object o) {
