@@ -7,6 +7,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
+
+
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class CombatTest {
@@ -17,158 +20,163 @@ class CombatTest {
     private Spiny spiny;
 
     @BeforeEach
-    void setUp(){
-        luis=new Luis(5,10,10,10,10,10,10);
-        marco=new Marco(5,10,10,10,10,10,10);
+    void setUp() {
+        luis = new Luis(5, 10, 10, 10, 20, 20, 10);
+        marco = new Marco(5, 10, 10, 10, 20, 20, 10);
 
-        boo=new Boo(5,10,10,10);
-        goomba=new Goomba(5,10,10,10);
-        spiny=new Spiny(5,10,10,10);
-    }
-    @Test
-    void getAttackByEnemies(){
-        assertEquals(10, luis.getHp());
-        assertEquals(10, marco.getHp());
-
-        marco.getAtkByBoo(37.5);
-        luis.getAtkByBoo(37.5);
-
-        assertEquals(6.25, luis.getHp());
-        assertEquals(10, marco.getHp());
-
-        marco.getAtkByGoomba(10);
-        luis.getAtkByGoomba(10);
-
-        assertEquals(5.25, luis.getHp());
-        assertEquals(9, marco.getHp());
-
-        marco.getAtkBySpiny(10);
-        luis.getAtkBySpiny(10);
-
-        assertEquals(4.25, luis.getHp());
-        assertEquals(8, marco.getHp());
+        boo = new Boo(5, 10, 10, 10);
+        goomba = new Goomba(5, 10, 10, 10);
+        spiny = new Spiny(5, 10, 10, 10);
     }
 
     @Test
-    void getAttackByPlayers(){
-        assertEquals(10, boo.getHp());
-        assertEquals(10, goomba.getHp());
-        assertEquals(10, spiny.getHp());
-
-        boo.getAtkByLuisNormal(10);
-        goomba.getAtkByLuisNormal(10);
-        spiny.getAtkByLuisNormal(10);
-
-        assertEquals(10, boo.getHp());
-        assertEquals(9, goomba.getHp());
-        assertEquals(10, spiny.getHp());
-
-        boo.getAtkByMarcoNormal(10);
-        goomba.getAtkByMarcoNormal(10);
-        spiny.getAtkByMarcoNormal(10);
-
-        assertEquals(9, boo.getHp());
-        assertEquals(8, goomba.getHp());
-        assertEquals(10, spiny.getHp());
-
-        boo.getAtkByMarcoHammer(10);
-        goomba.getAtkByMarcoHammer(10);
-        spiny.getAtkByMarcoHammer(10);
-
-        assertEquals(9, boo.getHp());
-        assertEquals(7, goomba.getHp());
-        assertEquals(9, spiny.getHp());
-
-        boo.getAtkByLuisHammer(10);
-        goomba.getAtkByLuisHammer(10);
-        spiny.getAtkByLuisHammer(10);
-
-        assertEquals(9, boo.getHp());
-        assertEquals(6, goomba.getHp());
-        assertEquals(8, spiny.getHp());
-    }
-
-    @Test
-    void attackNormal() {
-        assertEquals(10, luis.getHp());
-        assertEquals(10, marco.getHp());
-        assertEquals(10, boo.getHp());
-        assertEquals(10, goomba.getHp());
-        assertEquals(10, spiny.getHp());
-
-        marco.attackNormal(goomba);
-        marco.attackNormal(spiny);
-        marco.attackNormal(boo);
-
-        assertEquals(5, boo.getHp());
-        assertEquals(5, goomba.getHp());
-        assertEquals(10, spiny.getHp());
-        assertEquals(9.5, marco.getHp());
+    void normalAtkLuis() {
+        assertEquals(luis.getHp(), 10);
+        assertEquals(goomba.getHp(), 10);
+        assertEquals(spiny.getHp(), 10);
 
         luis.attackNormal(goomba);
-        luis.attackNormal(spiny);
-        luis.attackNormal(boo);
+        assertEquals(goomba.getHp(), 5);
+        luis.attackNormal(goomba);
+        assertEquals(goomba.getHp(), 0);
+        luis.attackNormal(goomba);
+        assertEquals(goomba.getHp(), 0);
 
-        assertEquals(5, boo.getHp());
-        assertEquals(0, goomba.getHp());
-        assertEquals(10, spiny.getHp());
-        assertEquals(9.5, luis.getHp());
+        luis.attackNormal(spiny);
+        assertEquals(spiny.getHp(), 10);
+        assertEquals(luis.getHp(), 9);
+    }
+
+    @Test
+    void normalAtkMarco() {
+        assertEquals(marco.getHp(), 10);
+        assertEquals(goomba.getHp(), 10);
+        assertEquals(spiny.getHp(), 10);
+        assertEquals(boo.getHp(), 10);
+
+        marco.attackNormal(goomba);
+        assertEquals(goomba.getHp(), 5);
+        marco.attackNormal(goomba);
+        assertEquals(goomba.getHp(), 0);
+        marco.attackNormal(goomba);
+        assertEquals(goomba.getHp(), 0);
+
+        marco.attackNormal(boo);
+        assertEquals(boo.getHp(), 5);
+        marco.attackNormal(boo);
+        assertEquals(boo.getHp(), 0);
+        marco.attackNormal(boo);
+        assertEquals(boo.getHp(), 0);
+
+        marco.attackNormal(spiny);
+        assertEquals(spiny.getHp(), 10);
+        assertEquals(marco.getHp(), 9);
     }
 
     @RepeatedTest(500)
-    void attackHammer() {
-        assertEquals(10, luis.getHp());
-        assertEquals(10, marco.getHp());
-        assertEquals(10, boo.getHp());
-        assertEquals(10, goomba.getHp());
-        assertEquals(10, spiny.getHp());
-
-        marco.attackHammer(goomba);
-        marco.attackHammer(spiny);
-        marco.attackHammer(boo);
-
-        assertEquals(10, boo.getHp());
-        assertTrue(2.5==goomba.getHp() || 10==boo.getHp());
-        assertTrue(2.5==spiny.getHp() || 10==spiny.getHp());
-        assertEquals(10, marco.getHp());
-
-        //Reset
-        boo=new Boo(5,10,10,10);
-        goomba=new Goomba(5,10,10,10);
-        spiny=new Spiny(5,10,10,10);
+    void hammerAtkLuis() {
+        assertEquals(luis.getHp(), 10);
+        assertEquals(goomba.getHp(), 10);
+        assertEquals(spiny.getHp(), 10);
 
         luis.attackHammer(goomba);
-        luis.attackHammer(spiny);
-        luis.attackHammer(boo);
+        assertTrue(goomba.getHp() == 10 || goomba.getHp() == 2.5);
 
-        assertEquals(10, boo.getHp());
-        assertTrue(2.5==goomba.getHp() || 10==boo.getHp());
-        assertTrue(2.5==spiny.getHp() || 10==spiny.getHp());
-        assertEquals(10, luis.getHp());
+        luis.attackHammer(spiny);
+        assertTrue(spiny.getHp() == 10 || spiny.getHp() == 2.5);
+    }
+
+    @RepeatedTest(500)
+    void hammerAtkMarco() {
+        assertEquals(marco.getHp(), 10);
+        assertEquals(goomba.getHp(), 10);
+        assertEquals(spiny.getHp(), 10);
+
+        marco.attackHammer(goomba);
+        assertTrue(goomba.getHp() == 10 || goomba.getHp() == 2.5);
+
+        marco.attackHammer(spiny);
+        assertTrue(spiny.getHp() == 10 || spiny.getHp() == 2.5);
     }
 
     @Test
-    void enemyAttacks(){
-        assertEquals(10, luis.getHp());
-        assertEquals(10, marco.getHp());
-        assertEquals(10, boo.getHp());
-        assertEquals(10, goomba.getHp());
-        assertEquals(10, spiny.getHp());
+    void atkBoo(){
+        assertEquals(luis.getHp(), 10);
+        assertEquals(boo.getHp(), 10);
 
-        goomba.attack(marco);
-        goomba.attack(luis);
-        assertEquals(6.25, marco.getHp());
-        assertEquals(6.25, luis.getHp());
+        boo.attack(luis);
+        assertEquals(luis.getHp(), 6.25);
+
+        boo.attack(luis);
+        assertEquals(luis.getHp(), 2.5);
+
+        boo.attack(luis);
+        assertEquals(luis.getHp(), 0);
+
+        boo.attack(luis);
+        assertEquals(luis.getHp(), 0);
+
+    }
+    @Test
+    void atkSpiny(){
+        assertEquals(luis.getHp(), 10);
+        assertEquals(marco.getHp(), 10);
+        assertEquals(spiny.getHp(), 10);
+
+        spiny.attack(luis);
+        assertEquals(luis.getHp(), 6.25);
+
+        spiny.attack(luis);
+        assertEquals(luis.getHp(), 2.5);
+
+        spiny.attack(luis);
+        assertEquals(luis.getHp(), 0);
+
+        spiny.attack(luis);
+        assertEquals(luis.getHp(), 0);
 
         spiny.attack(marco);
-        spiny.attack(luis);
-        assertEquals(2.5, marco.getHp());
-        assertEquals(2.5, luis.getHp());
+        assertEquals(marco.getHp(), 6.25);
 
-        boo.attack(marco);
-        boo.attack(luis);
-        assertEquals(2.5, marco.getHp());
-        assertEquals(0, luis.getHp());
+        spiny.attack(marco);
+        assertEquals(marco.getHp(), 2.5);
 
+        spiny.attack(marco);
+        assertEquals(marco.getHp(), 0);
+
+        spiny.attack(marco);
+        assertEquals(marco.getHp(), 0);
+
+
+    }
+    @Test
+    void atkGoomba(){
+        assertEquals(luis.getHp(), 10);
+        assertEquals(marco.getHp(), 10);
+        assertEquals(goomba.getHp(), 10);
+
+        goomba.attack(luis);
+        assertEquals(luis.getHp(), 6.25);
+
+        goomba.attack(luis);
+        assertEquals(luis.getHp(), 2.5);
+
+        goomba.attack(luis);
+        assertEquals(luis.getHp(), 0);
+
+        goomba.attack(luis);
+        assertEquals(luis.getHp(), 0);
+
+        goomba.attack(marco);
+        assertEquals(marco.getHp(), 6.25);
+
+        goomba.attack(marco);
+        assertEquals(marco.getHp(), 2.5);
+
+        goomba.attack(marco);
+        assertEquals(marco.getHp(), 0);
+
+        goomba.attack(marco);
+        assertEquals(marco.getHp(), 0);
     }
 }

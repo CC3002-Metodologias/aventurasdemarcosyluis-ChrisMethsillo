@@ -34,8 +34,8 @@ public class HoneySyrup implements Item{
     }
 
     /**
-     * Check if an object is equal to the this Honey Syrup
-     * @param o object
+     * Check if an object is equal to the Honey Syrup
+     * @param o object to compare
      * @return <code>true</code> If are the same object <code>false</code> otherwise
      */
     @Override

@@ -1,13 +1,14 @@
 package com.example.aventurasdemarcoyluis.model.npc;
 
-import com.example.aventurasdemarcoyluis.model.PlayersCombat;
+import com.example.aventurasdemarcoyluis.model.playablechar.LuisCombat;
+import com.example.aventurasdemarcoyluis.model.playablechar.MarcoCombat;
 
 /**
  *This class represent the Enemy Goomba, implements different methods to the combat system
  * @author Christian Jesus Parra Cofre
  * @see com.example.aventurasdemarcoyluis.model.npc.Enemies
  */
-public class Goomba extends Enemies implements EnemiesCombat{
+public class Goomba extends Enemies implements GoombaCombat {
     /**
      * Creates a new Goomba
      *
@@ -19,11 +20,25 @@ public class Goomba extends Enemies implements EnemiesCombat{
     public Goomba(int ATK, int DEF, int HP, int LVL) {
         super(ATK, DEF, HP, LVL, EnemyType.GOOMBA);
     }
-
+    /**
+     * {@inheritDoc}
+     * @param player player to attack
+     */
     @Override
-    public void attack(PlayersCombat player) {
+    public void attack(LuisCombat player) {
         if(!isDeath()){
-            double dmg=0.75*this.getAtk()*this.getLvl();
+            double dmg=0.75*(this.getAtk()*this.getLvl())/player.getDef();
+            player.getAtkByGoomba(dmg);
+        }
+    }
+    /**
+     * {@inheritDoc}
+     * @param player player to attack
+     */
+    @Override
+    public void attack(MarcoCombat player) {
+        if(!isDeath()){
+            double dmg=0.75*this.getAtk()*this.getLvl()/player.getDef();
             player.getAtkByGoomba(dmg);
         }
     }
@@ -34,7 +49,7 @@ public class Goomba extends Enemies implements EnemiesCombat{
      */
     @Override
     public void getAtkByMarcoNormal(double dmg) {
-        this.dealDamage(dmg/this.getDef());
+        this.dealDamage(dmg);
     }
 
     /**
@@ -43,7 +58,7 @@ public class Goomba extends Enemies implements EnemiesCombat{
      */
     @Override
     public void getAtkByLuisNormal(double dmg) {
-        this.dealDamage(dmg/this.getDef());
+        this.dealDamage(dmg);
     }
 
     /**
@@ -52,7 +67,7 @@ public class Goomba extends Enemies implements EnemiesCombat{
      */
     @Override
     public void getAtkByMarcoHammer(double dmg) {
-        this.dealDamage(dmg/this.getDef());
+        this.dealDamage(dmg);
     }
 
     /**
@@ -61,6 +76,6 @@ public class Goomba extends Enemies implements EnemiesCombat{
      */
     @Override
     public void getAtkByLuisHammer(double dmg) {
-        this.dealDamage(dmg/this.getDef());
+        this.dealDamage(dmg);
     }
 }

@@ -54,12 +54,21 @@ class RedMushroomTest {
 
         marco.giveItem(rm);
         luis.giveItem(rm);
+        marco.giveItem(rm);
+        luis.giveItem(rm);
+
 
         assertTrue(marco.haveAItem(ItemType.REDMUSHROOM));
         assertTrue(luis.haveAItem(ItemType.REDMUSHROOM));
 
         assertEquals(9, marco.getHp());
         assertEquals(9, luis.getHp());
+
+        marco.useRedMushroom();
+        luis.useRedMushroom();
+
+        assertEquals(10, marco.getHp());
+        assertEquals(10, luis.getHp());
 
         marco.useRedMushroom();
         luis.useRedMushroom();

@@ -2,15 +2,14 @@ package com.example.aventurasdemarcoyluis.model.playablechar;
 
 import com.example.aventurasdemarcoyluis.model.AbstractPlayers;
 import com.example.aventurasdemarcoyluis.model.PlayerType;
-import com.example.aventurasdemarcoyluis.model.PlayersCombat;
 import com.example.aventurasdemarcoyluis.model.npc.*;
 
 /**
  * One of the playable characters is Luis. He has different methods for the combat system of the game
  * @author Christian Jesus Parra Cofre
- * @see PlayersCombat
+ * @see AbstractPlayers
  */
-public class Luis extends AbstractPlayers implements PlayersCombat {
+public class Luis extends AbstractPlayers implements LuisCombat {
     /**
      * Creates a new Luis
      *
@@ -33,7 +32,7 @@ public class Luis extends AbstractPlayers implements PlayersCombat {
      */
     @Override
     public void getAtkByGoomba(double dmg) {
-        this.dealDamage(dmg/this.getDef());
+        this.dealDamage(dmg);
     }
 
     /**
@@ -43,7 +42,7 @@ public class Luis extends AbstractPlayers implements PlayersCombat {
      */
     @Override
     public void getAtkBySpiny(double dmg) {
-        this.dealDamage(dmg/this.getDef());
+        this.dealDamage(dmg);
     }
 
     /**
@@ -53,7 +52,7 @@ public class Luis extends AbstractPlayers implements PlayersCombat {
      */
     @Override
     public void getAtkByBoo(double dmg) {
-        this.dealDamage(dmg/this.getDef());
+        this.dealDamage(dmg);
     }
 
     /**
@@ -62,26 +61,53 @@ public class Luis extends AbstractPlayers implements PlayersCombat {
      * @param enemy enemy to attack
      */
     @Override
-    public void attackNormal(EnemiesCombat enemy) {
+    public void attackNormal(GoombaCombat enemy) {
         if(!isDeath() & hasEnoughFp(1)){
-            double dmg=this.getAtk()*this.getLvl();
+            double dmg=this.getAtk()*this.getLvl()/ enemy.getDef();
             enemy.getAtkByLuisNormal(dmg);
             reduceFp(1);
         }
-        if(enemy.getType()==EnemyType.SPINY){
-            this.dealDamage(0.05*getHp());
+    }
+    /**
+     * This method make a Normal attack to an enemy.
+     * Different enemies make different consequences, like receive damage or secondary effects.
+     * @param enemy enemy to attack
+     */
+    @Override
+    public void attackNormal(SpinyCombat enemy) {
+        if(!isDeath() & hasEnoughFp(1)){
+            double dmg=this.getAtk()*this.getLvl()/ enemy.getDef();
+            enemy.getAtkByLuisNormal(dmg);
+            getAtkBySpiny(0.1*MAXHP());
+            reduceFp(1);
         }
     }
+
     /**
      * This method make a Hammer attack to an enemy
      * Different enemies make different consequences, like receive damage or secondary effects.
      * @param enemy enemy to attack
      */
     @Override
-    public void attackHammer(EnemiesCombat enemy) {
+    public void attackHammer(GoombaCombat enemy) {
         boolean probability=Math.random()>=0.25;
         if(!isDeath() & probability & hasEnoughFp(2)){
-            double dmg=1.5*this.getAtk()*this.getLvl();
+            double dmg=1.5*this.getAtk()*this.getLvl()/enemy.getDef();
+            enemy.getAtkByLuisHammer(dmg);
+            reduceFp(2);
+        }
+    }
+
+    /**
+     * This method make a Hammer attack to an enemy
+     * Different enemies make different consequences, like receive damage or secondary effects.
+     * @param enemy enemy to attack
+     */
+    @Override
+    public void attackHammer(SpinyCombat enemy) {
+        boolean probability=Math.random()>=0.25;
+        if(!isDeath() & probability & hasEnoughFp(2)){
+            double dmg=1.5*this.getAtk()*this.getLvl()/ enemy.getDef();
             enemy.getAtkByLuisHammer(dmg);
             reduceFp(2);
         }

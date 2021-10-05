@@ -55,12 +55,20 @@ class HoneySyrupTest {
 
         marco.giveItem(hs);
         luis.giveItem(hs);
+        marco.giveItem(hs);
+        luis.giveItem(hs);
 
         assertTrue(marco.haveAItem(ItemType.HONEYSYRUP));
         assertTrue(luis.haveAItem(ItemType.HONEYSYRUP));
 
         assertEquals(5, marco.getFp());
         assertEquals(5, luis.getFp());
+
+        marco.useHoneySyrup();
+        luis.useHoneySyrup();
+
+        assertEquals(8, marco.getFp());
+        assertEquals(8, luis.getFp());
 
         marco.useHoneySyrup();
         luis.useHoneySyrup();

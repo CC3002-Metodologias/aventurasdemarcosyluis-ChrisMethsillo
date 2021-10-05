@@ -1,12 +1,13 @@
 package com.example.aventurasdemarcoyluis.model.npc;
-import com.example.aventurasdemarcoyluis.model.PlayersCombat;
+
+import com.example.aventurasdemarcoyluis.model.playablechar.LuisCombat;
 
 /**
  *This class represent the Enemy Boo, implements different methods to the combat system
  * @author Christian Jesus Parra Cofre
  * @see com.example.aventurasdemarcoyluis.model.npc.Enemies
  */
-public class Boo extends Enemies implements EnemiesCombat{
+public class Boo extends Enemies implements BooCombat{
     /**
      * Creates a new Enemy
      *
@@ -24,9 +25,9 @@ public class Boo extends Enemies implements EnemiesCombat{
      * @param player player to attack
      */
     @Override
-    public void attack(PlayersCombat player) {
+    public void attack(LuisCombat player) {
         if(!isDeath()){
-            double dmg=0.75*this.getAtk()*this.getLvl();
+            double dmg=0.75*this.getAtk()*this.getLvl()/player.getDef();
             player.getAtkByBoo(dmg);
         }
     }
@@ -37,37 +38,7 @@ public class Boo extends Enemies implements EnemiesCombat{
      */
     @Override
     public void getAtkByMarcoNormal(double dmg) {
-        this.dealDamage(dmg/this.getDef());
+        this.dealDamage(dmg);
     }
 
-    /**
-     * {@inheritDoc}
-     * Boo doesn't receive damage from luis.
-     * @param dmg damage taken
-     */
-    @Override
-    public void getAtkByLuisNormal(double dmg) {
-        this.dealDamage(0);
-    }
-
-    /**
-     * {@inheritDoc}
-     * Boo doesn't receive damage from a hammer attack.
-     * @param dmg damage taken
-     */
-    @Override
-    public void getAtkByMarcoHammer(double dmg) {
-        this.dealDamage(0);
-    }
-
-    /**
-     * {@inheritDoc}
-     * * Boo doesn't receive damage from luis
-     * Boo doesn't receive damage from a hammer attack.
-     * @param dmg damage taken
-     */
-    @Override
-    public void getAtkByLuisHammer(double dmg) {
-        this.dealDamage(0);
-    }
 }

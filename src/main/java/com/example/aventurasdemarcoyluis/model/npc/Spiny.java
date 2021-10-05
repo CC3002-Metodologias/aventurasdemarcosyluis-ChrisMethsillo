@@ -1,13 +1,14 @@
 package com.example.aventurasdemarcoyluis.model.npc;
 
-import com.example.aventurasdemarcoyluis.model.PlayersCombat;
+import com.example.aventurasdemarcoyluis.model.playablechar.LuisCombat;
+import com.example.aventurasdemarcoyluis.model.playablechar.MarcoCombat;
 
 /**
  *This class represent the Enemy Spiny, implements different methods to the combat system
  * @author Christian Jesus Parra Cofre
  * @see com.example.aventurasdemarcoyluis.model.npc.Enemies
  */
-public class Spiny extends Enemies implements EnemiesCombat{
+public class Spiny extends Enemies implements SpinyCombat {
     /**
      * Creates a new Spiny
      *
@@ -25,9 +26,20 @@ public class Spiny extends Enemies implements EnemiesCombat{
      * @param player player to attack
      */
     @Override
-    public void attack(PlayersCombat player) {
+    public void attack(MarcoCombat player) {
         if(!isDeath()){
-            double dmg=0.75*this.getAtk()*this.getLvl();
+            double dmg=0.75*this.getAtk()*this.getLvl()/ player.getDef();
+            player.getAtkBySpiny(dmg);
+        }
+    }
+    /**
+     * {@inheritDoc}
+     * @param player player to attack
+     */
+    @Override
+    public void attack(LuisCombat player) {
+        if(!isDeath()){
+            double dmg=0.75*this.getAtk()*this.getLvl()/ player.getDef();
             player.getAtkBySpiny(dmg);
         }
     }
@@ -50,6 +62,7 @@ public class Spiny extends Enemies implements EnemiesCombat{
     @Override
     public void getAtkByLuisNormal(double dmg) {
         this.dealDamage(0);
+
     }
 
     /**
@@ -58,7 +71,7 @@ public class Spiny extends Enemies implements EnemiesCombat{
      */
     @Override
     public void getAtkByMarcoHammer(double dmg) {
-        this.dealDamage(dmg/this.getDef());
+        this.dealDamage(dmg);
     }
 
     /**
@@ -67,6 +80,6 @@ public class Spiny extends Enemies implements EnemiesCombat{
      */
     @Override
     public void getAtkByLuisHammer(double dmg) {
-        this.dealDamage(dmg/this.getDef());
+        this.dealDamage(dmg);
     }
 }

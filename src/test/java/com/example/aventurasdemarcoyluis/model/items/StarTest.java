@@ -25,8 +25,8 @@ class StarTest {
         assertFalse(marco.isInmortal());
         assertFalse(luis.isInmortal());
 
-        marco.getAtkBySpiny(10);
-        luis.getAtkBySpiny(10);
+        marco.getAtkBySpiny(1);
+        luis.getAtkBySpiny(1);
 
         assertEquals(9, marco.getHp());
         assertEquals(9, luis.getHp());
@@ -37,8 +37,8 @@ class StarTest {
         assertTrue(marco.isInmortal());
         assertTrue(luis.isInmortal());
 
-        marco.getAtkBySpiny(10);
-        luis.getAtkBySpiny(10);
+        marco.getAtkBySpiny(1);
+        luis.getAtkBySpiny(1);
 
         assertEquals(9, marco.getHp());
         assertEquals(9, luis.getHp());
@@ -75,8 +75,8 @@ class StarTest {
         assertEquals(10, marco.getHp());
         assertEquals(10, luis.getHp());
 
-        marco.getAtkBySpiny(10);
-        luis.getAtkBySpiny(10);
+        marco.getAtkBySpiny(1);
+        luis.getAtkBySpiny(1);
 
         assertEquals(9, marco.getHp());
         assertEquals(9, luis.getHp());
@@ -87,8 +87,8 @@ class StarTest {
         assertTrue(marco.isInmortal());
         assertTrue(luis.isInmortal());
 
-        marco.getAtkBySpiny(10);
-        luis.getAtkBySpiny(10);
+        marco.getAtkBySpiny(1);
+        luis.getAtkBySpiny(1);
 
         assertEquals(9, marco.getHp());
         assertEquals(9, luis.getHp());
