@@ -1,6 +1,8 @@
 package com.example.aventurasdemarcoyluis.model.npc;
 
+import com.example.aventurasdemarcoyluis.model.playablechar.Luis;
 import com.example.aventurasdemarcoyluis.model.playablechar.LuisCombat;
+import com.example.aventurasdemarcoyluis.model.playablechar.Marco;
 import com.example.aventurasdemarcoyluis.model.playablechar.MarcoCombat;
 
 /**
@@ -9,17 +11,19 @@ import com.example.aventurasdemarcoyluis.model.playablechar.MarcoCombat;
  * @see com.example.aventurasdemarcoyluis.model.npc.Enemies
  */
 public class Goomba extends Enemies implements GoombaCombat {
+
     /**
-     * Creates a new Goomba
+     * Creates a new Enemy
      *
      * @param ATK attack points
      * @param DEF defense points
      * @param HP  heal points
      * @param LVL level of the Unit
      */
-    public Goomba(int ATK, int DEF, int HP, int LVL) {
+    public Goomba(double ATK, double DEF, double HP, int LVL) {
         super(ATK, DEF, HP, LVL, EnemyType.GOOMBA);
     }
+
     /**
      * {@inheritDoc}
      * @param player player to attack
@@ -78,4 +82,6 @@ public class Goomba extends Enemies implements GoombaCombat {
     public void getAtkByLuisHammer(double dmg) {
         this.dealDamage(dmg);
     }
+
+
 }

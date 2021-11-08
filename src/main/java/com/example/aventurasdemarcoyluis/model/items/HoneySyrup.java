@@ -21,8 +21,8 @@ public class HoneySyrup implements Item{
      * @param player player who will use the object
      */
     @Override
-    public void use(AbstractPlayers player) {
-        player.increaseFp(3);
+    public void use(ItemUse player) {
+        player.useHoneySyrup();
     }
 
     /**

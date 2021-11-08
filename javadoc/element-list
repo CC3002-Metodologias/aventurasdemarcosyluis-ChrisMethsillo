@@ -1,5 +1,9 @@
-module:com.example.aventurasdemarcoyluis
+com.example.aventurasdemarcoyluis.controller
+com.example.aventurasdemarcoyluis.controller.GameStates
+com.example.aventurasdemarcoyluis.controller.utilities
 com.example.aventurasdemarcoyluis.model
 com.example.aventurasdemarcoyluis.model.items
+com.example.aventurasdemarcoyluis.model.items.factories
 com.example.aventurasdemarcoyluis.model.npc
+com.example.aventurasdemarcoyluis.model.npc.factories
 com.example.aventurasdemarcoyluis.model.playablechar

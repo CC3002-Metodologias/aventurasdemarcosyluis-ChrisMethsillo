@@ -1,6 +1,8 @@
 package com.example.aventurasdemarcoyluis.model.npc;
 
+import com.example.aventurasdemarcoyluis.model.playablechar.Luis;
 import com.example.aventurasdemarcoyluis.model.playablechar.LuisCombat;
+import com.example.aventurasdemarcoyluis.model.playablechar.Marco;
 import com.example.aventurasdemarcoyluis.model.playablechar.MarcoCombat;
 
 /**
@@ -9,15 +11,16 @@ import com.example.aventurasdemarcoyluis.model.playablechar.MarcoCombat;
  * @see com.example.aventurasdemarcoyluis.model.npc.Enemies
  */
 public class Spiny extends Enemies implements SpinyCombat {
+
     /**
-     * Creates a new Spiny
+     * Creates a new Enemy
      *
      * @param ATK attack points
      * @param DEF defense points
      * @param HP  heal points
      * @param LVL level of the Unit
      */
-    public Spiny(int ATK, int DEF, int HP, int LVL) {
+    public Spiny(double ATK, double DEF, double HP, int LVL) {
         super(ATK, DEF, HP, LVL, EnemyType.SPINY);
     }
 
@@ -82,4 +85,6 @@ public class Spiny extends Enemies implements SpinyCombat {
     public void getAtkByLuisHammer(double dmg) {
         this.dealDamage(dmg);
     }
+
+
 }

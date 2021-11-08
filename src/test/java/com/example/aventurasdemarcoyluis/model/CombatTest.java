@@ -73,7 +73,7 @@ class CombatTest {
         assertEquals(marco.getHp(), 9);
     }
 
-    @RepeatedTest(500)
+    @RepeatedTest(50)
     void hammerAtkLuis() {
         assertEquals(luis.getHp(), 10);
         assertEquals(goomba.getHp(), 10);
@@ -86,7 +86,7 @@ class CombatTest {
         assertTrue(spiny.getHp() == 10 || spiny.getHp() == 2.5);
     }
 
-    @RepeatedTest(500)
+    @RepeatedTest(50)
     void hammerAtkMarco() {
         assertEquals(marco.getHp(), 10);
         assertEquals(goomba.getHp(), 10);
@@ -97,6 +97,9 @@ class CombatTest {
 
         marco.attackHammer(spiny);
         assertTrue(spiny.getHp() == 10 || spiny.getHp() == 2.5);
+
+        marco.attackHammer(boo);
+        assertTrue(boo.getHp() == 10 || boo.getHp() == 2.5);
     }
 
     @Test

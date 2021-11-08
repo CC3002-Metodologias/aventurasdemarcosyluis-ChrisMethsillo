@@ -46,5 +46,5 @@ These enemies have a Damage constant K=0.75.
 
 
 ### - How to play
-Actually, the game is in developing. But we can test the implementations made at this moment. In the folder [test](src/test) you can verify the different
-objects and theirs methods. Just run it with any IDE (InteliJ IDEA ideally).
+Actually, the game is in developing. But we can make a battle with the controller, and the game will be playable.
+To make a battle, is necessary to make a main class, and create a battle with the controller class.

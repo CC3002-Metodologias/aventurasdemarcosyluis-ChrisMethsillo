@@ -60,6 +60,6 @@ public interface GoombaCombat {
      * returns the defense points
      * @return def points
      */
-    public int getDef();
+    public double getDef();
 
 }

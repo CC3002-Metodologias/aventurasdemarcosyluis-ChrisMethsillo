@@ -1,1 +1,1 @@
-moduleSearchIndex = [{"l":"com.example.aventurasdemarcoyluis"}];updateSearchResults();
+moduleSearchIndex = [];updateSearchResults();

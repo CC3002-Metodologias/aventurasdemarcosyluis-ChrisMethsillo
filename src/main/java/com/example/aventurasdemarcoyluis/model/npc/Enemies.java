@@ -1,5 +1,10 @@
 package com.example.aventurasdemarcoyluis.model.npc;
 
+import com.example.aventurasdemarcoyluis.model.playablechar.Luis;
+import com.example.aventurasdemarcoyluis.model.playablechar.LuisCombat;
+import com.example.aventurasdemarcoyluis.model.playablechar.Marco;
+import com.example.aventurasdemarcoyluis.model.playablechar.MarcoCombat;
+
 import java.util.Objects;
 
 /**
@@ -9,8 +14,8 @@ import java.util.Objects;
  * @author Christian Jesus Parra Cofre
  */
 public abstract class Enemies {
-    private int atk;
-    private int def;
+    private double atk;
+    private double def;
     private double hp;
     private int lvl=1;
     private EnemyType type;
@@ -24,7 +29,7 @@ public abstract class Enemies {
      * @param t Enemy type
      *
      */
-    public Enemies(int ATK, int DEF,double HP, int LVL, EnemyType t ){
+    public Enemies(double ATK, double DEF,double HP, int LVL, EnemyType t ){
         atk=ATK;
         def=DEF;
         hp=HP;
@@ -36,7 +41,7 @@ public abstract class Enemies {
      * Returns the enemy attack point
      * @return atk
      */
-    public int getAtk() {
+    public double getAtk() {
         return atk;
     }
 
@@ -44,7 +49,7 @@ public abstract class Enemies {
      * Returns the enemy defense point
      * @return def
      */
-    public int getDef() {
+    public double getDef() {
         return def;
     }
 
@@ -122,4 +127,6 @@ public abstract class Enemies {
     public int hashCode() {
         return Objects.hash(atk, def, hp, lvl, type);
     }
+
+
 }

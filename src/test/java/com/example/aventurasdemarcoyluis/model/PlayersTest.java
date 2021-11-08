@@ -116,4 +116,40 @@ class PlayersTest {
         assertTrue(luis1Test.hasEnoughFp(20));
     }
 
+    @Test
+    void useHoneySyrup() {
+        assertEquals(20, marco1Test.getFp());
+        assertEquals(20, luis1Test.getFp());
+        marco1Test.useHoneySyrup();
+       luis1Test.useHoneySyrup();
+        assertEquals(23, marco1Test.getFp());
+        assertEquals(23, luis1Test.getFp());
+        marco1Test.useHoneySyrup();
+        luis1Test.useHoneySyrup();
+        assertEquals(25, marco1Test.getFp());
+        assertEquals(25, luis1Test.getFp());
+    }
+
+    @Test
+    void useRedMushroom() {
+        Marco marcotest= new Marco(3,3,90,100,20,25,5);
+        assertEquals(90, marcotest.getHp());
+        marcotest.useRedMushroom();
+        assertEquals(100, marcotest.getHp());
+        Luis luitest= new Luis(3,3,90,100,20,25,5);
+        assertEquals(90, luitest.getHp());
+        luitest.useRedMushroom();
+        assertEquals(100, luitest.getHp());
+
+    }
+    @Test
+    void increaseLvl(){
+        assertEquals(5, marco1Test.getLvl());
+        assertEquals(5, luis1Test.getLvl());
+        marco1Test.increaseLvl();
+        luis1Test.increaseLvl();
+        assertEquals(6, marco1Test.getLvl());
+        assertEquals(6, luis1Test.getLvl());
+    }
+
 }

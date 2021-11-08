@@ -17,16 +17,16 @@ import java.util.Objects;
  *  @author Christian Jesus Parra Cofre.
  */
 public abstract class AbstractPlayers implements ItemUse{
-    private int atk;
-    private int def;
+    private double atk;
+    private double def;
     private double hp;
     private static double MAXHP;
-    private int fp;
-    private static int MAXFP;
+    private double fp;
+    private static double MAXFP;
     private int lvl;
     private boolean inmortal=false;
     private PlayerType character;
-    private Hashtable<ItemType, ArrayList<Item> > Inventory = new Hashtable<>();
+
 
     /**
      * Creates a new player
@@ -39,7 +39,7 @@ public abstract class AbstractPlayers implements ItemUse{
      * @param LVL level of the Unit
      * @param CHARACTER Character Type
      */
-    public AbstractPlayers(int ATK, int DEF, double HP, double maxHP, int FP, int maxFP, int LVL, PlayerType CHARACTER){
+    public AbstractPlayers(double ATK, double DEF, double HP, double maxHP, double FP, double maxFP, int LVL, PlayerType CHARACTER){
         atk=ATK;
         def=DEF;
         MAXHP=maxHP;
@@ -54,13 +54,27 @@ public abstract class AbstractPlayers implements ItemUse{
      *Set the hp of the character
      * @param hp new hp
      */
-    private void setHp(double hp){this.hp=hp;}
+    private void setHp(double hp){
+        if(hp>MAXHP){
+            this.hp=MAXHP;
+        }
+        else{
+            this.hp=hp;
+        }
+    }
 
     /**
      *Set the fp of the character
      * @param fp new fp
      */
-    private void setFp(int fp){this.fp=fp;}
+    private void setFp(double fp){
+        if(fp>MAXFP){
+            this.fp=MAXFP;
+        }
+        else{
+            this.fp=fp;
+        }
+    }
 
     /**
      *Return the hp of the character
@@ -74,7 +88,7 @@ public abstract class AbstractPlayers implements ItemUse{
      *Return the Atack points of the character
      * @return atk
      */
-    public int getAtk(){
+    public double getAtk(){
         return atk;
     }
 
@@ -82,7 +96,7 @@ public abstract class AbstractPlayers implements ItemUse{
      * Return the Defense points of the character
      * @return def
      */
-    public int getDef(){
+    public double getDef(){
         return def;
     }
 
@@ -98,7 +112,7 @@ public abstract class AbstractPlayers implements ItemUse{
      *Return the fight points of the character
      * @return fp
      */
-    public int getFp(){return fp;}
+    public double getFp(){return fp;}
 
     /**
      *Return the character type
@@ -154,7 +168,7 @@ public abstract class AbstractPlayers implements ItemUse{
      * Returns the max hp of the player
      * @return MAXHP
      */
-    public double MAXHP(){
+    public double getMAXHP(){
         return MAXHP;
     }
 
@@ -182,6 +196,17 @@ public abstract class AbstractPlayers implements ItemUse{
     }
 
     /**
+     * Increase the level of the character and increase the stats.
+     */
+    public void increaseLvl(){
+        MAXHP=MAXHP*(1.15);
+        MAXFP= MAXFP*(1.15);
+        atk=atk*(1.15);
+        def=def*(1.15);
+        lvl++;
+    }
+
+    /**
      *Deal damage to the character
      * @param dmg damage received
      */
@@ -197,64 +222,16 @@ public abstract class AbstractPlayers implements ItemUse{
     }
 
     /**
-     * Add a item to the inventory
-     * @param item item to add
-     */
-    public void giveItem(Item item){
-        if(Inventory.get(item.getType())==null){
-            ArrayList<Item> newArray=new ArrayList<>();
-            newArray.add(item);
-            Inventory.put(item.getType(),newArray);
-        }
-        else{
-            Inventory.get(item.getType()).add(item);
-        }
-    }
-
-    /**
-     * Check if the player has a specified item
-     * @param item ItemType to check
-     * @return <code>true</code> if the item exists <code>false</code>otherwise
-     */
-    public boolean haveAItem(ItemType item){
-        if(Inventory.get(item)==null){
-            return false;
-        }
-        if(Inventory.get(item).isEmpty()){
-            return false;
-        }
-        return true;
-    }
-
-    /**
-     * Uses a item in the inventory
-     * @param item ItemType to use
-     */
-    private void useItem(ItemType item){
-        if(this.haveAItem(item)){
-            Inventory.get(item).get(0).use(this);
-            Inventory.get(item).remove(0);
-        }
-    }
-    /**
      *Use the HoneySyrup item
      * @see com.example.aventurasdemarcoyluis.model.items.Item
      * @see com.example.aventurasdemarcoyluis.model.items.HoneySyrup
      */
     @Override
     public void useHoneySyrup() {
-        useItem(ItemType.HONEYSYRUP);
+        this.increaseFp(3);
     }
 
-    /**
-     * Use the Star item
-     * @see com.example.aventurasdemarcoyluis.model.items.Item
-     * @see com.example.aventurasdemarcoyluis.model.items.Star
-     */
-    @Override
-    public void useStar() {
-        useItem(ItemType.STAR);
-    }
+
 
     /**
      *Use the RedMushroom item
@@ -263,7 +240,7 @@ public abstract class AbstractPlayers implements ItemUse{
      */
     @Override
     public void useRedMushroom() {
-        useItem(ItemType.REDMUSHROOM);
+        this.increaseHp(0.1*MAXHP);
     }
 
     /**

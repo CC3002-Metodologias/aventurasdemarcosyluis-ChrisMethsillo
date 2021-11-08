@@ -61,5 +61,5 @@ public interface LuisCombat {
      * This method returns the Def points
      * @return defense points
      */
-    public int getDef();
+    public double getDef();
 }
