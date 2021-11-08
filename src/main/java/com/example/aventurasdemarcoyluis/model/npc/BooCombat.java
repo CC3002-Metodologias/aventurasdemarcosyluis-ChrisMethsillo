@@ -30,9 +30,16 @@ public interface BooCombat {
     public void getAtkByMarcoNormal(double dmg);
 
     /**
+     * This method is to take damage done by the normal attack of Marco.
+     * @param dmg damage taken
+     * @see com.example.aventurasdemarcoyluis.model.playablechar.Marco
+     */
+    public void getAtkByMarcoHammer(double dmg);
+
+    /**
      * Returns the defense points
      * @return def points
      */
-    public int getDef();
+    public double getDef();
 
 }

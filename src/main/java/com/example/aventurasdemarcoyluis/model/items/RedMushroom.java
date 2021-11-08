@@ -22,8 +22,8 @@ public class RedMushroom implements Item{
      * @param player player who will use the object
      */
     @Override
-    public void use(AbstractPlayers player) {
-        player.increaseHp(0.1* player.MAXHP());
+    public void use(ItemUse player) {
+        player.useRedMushroom();
     }
 
     /**

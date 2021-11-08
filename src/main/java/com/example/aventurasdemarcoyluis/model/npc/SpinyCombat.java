@@ -61,5 +61,5 @@ public interface SpinyCombat {
      * returns the defense points
      * @return def points
      */
-    public int getDef();
+    public double getDef();
 }

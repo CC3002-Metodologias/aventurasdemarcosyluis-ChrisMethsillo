@@ -21,7 +21,7 @@ public class Marco extends AbstractPlayers implements MarcoCombat {
      * @param maxFP Max fight points
      * @param LVL level of the Unit
      */
-    public Marco(int ATK, int DEF, double HP, double maxHP, int FP, int maxFP, int LVL) {
+    public Marco(int ATK, int DEF, double HP, double maxHP, double FP, double maxFP, int LVL) {
         super(ATK, DEF, HP, maxHP, FP, maxFP, LVL, PlayerType.MARCO);
     }
 
@@ -69,7 +69,7 @@ public class Marco extends AbstractPlayers implements MarcoCombat {
         if(!isDeath() & hasEnoughFp(1)){
             double dmg=this.getAtk()*this.getLvl()/ enemy.getDef();
             enemy.getAtkByMarcoNormal(dmg);
-            getAtkBySpiny(0.1*MAXHP());
+            getAtkBySpiny(0.1*getMAXHP());
             reduceFp(1);
         }
     }
@@ -95,6 +95,21 @@ public class Marco extends AbstractPlayers implements MarcoCombat {
      */
     @Override
     public void attackHammer(GoombaCombat enemy) {
+        boolean probability=Math.random()>=0.25;
+        if(!isDeath() & probability & hasEnoughFp(2)){
+            double dmg=1.5*this.getAtk()*this.getLvl()/ enemy.getDef();
+            enemy.getAtkByMarcoHammer(dmg);
+            reduceFp(2);
+        }
+    }
+
+    /**
+     * This method make a Hammer attack to an enemy
+     * Different enemies make different consequences, like receive damage or secondary effects.
+     * @param enemy enemy to attack
+     */
+    @Override
+    public void attackHammer(BooCombat enemy) {
         boolean probability=Math.random()>=0.25;
         if(!isDeath() & probability & hasEnoughFp(2)){
             double dmg=1.5*this.getAtk()*this.getLvl()/ enemy.getDef();

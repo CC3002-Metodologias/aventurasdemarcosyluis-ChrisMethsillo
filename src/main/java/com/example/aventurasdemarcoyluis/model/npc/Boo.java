@@ -1,6 +1,9 @@
 package com.example.aventurasdemarcoyluis.model.npc;
 
+import com.example.aventurasdemarcoyluis.model.playablechar.Luis;
 import com.example.aventurasdemarcoyluis.model.playablechar.LuisCombat;
+import com.example.aventurasdemarcoyluis.model.playablechar.Marco;
+import com.example.aventurasdemarcoyluis.model.playablechar.MarcoCombat;
 
 /**
  *This class represent the Enemy Boo, implements different methods to the combat system
@@ -16,7 +19,7 @@ public class Boo extends Enemies implements BooCombat{
      * @param HP  heal points
      * @param LVL level of the Unit
      */
-    public Boo(int ATK, int DEF, int HP, int LVL) {
+    public Boo(double ATK, double DEF, double HP, int LVL) {
         super(ATK, DEF, HP, LVL, EnemyType.BOO);
     }
 
@@ -40,5 +43,15 @@ public class Boo extends Enemies implements BooCombat{
     public void getAtkByMarcoNormal(double dmg) {
         this.dealDamage(dmg);
     }
+
+    /**
+     * {@inheritDoc}
+     * @param dmg damage taken
+     */
+    @Override
+    public void getAtkByMarcoHammer(double dmg) {
+        this.dealDamage(0);
+    }
+
 
 }

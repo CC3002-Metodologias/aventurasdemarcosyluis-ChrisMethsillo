@@ -52,11 +52,17 @@ public interface MarcoCombat {
      * This method make a Hammer attack to an enemy
      * @param enemy enemy to attack
      */
+    public void attackHammer(BooCombat enemy);
+
+    /**
+     * This method make a Hammer attack to an enemy
+     * @param enemy enemy to attack
+     */
     public void attackHammer(SpinyCombat enemy);
 
     /**
      * This method returns the Def points
      * @return defense points
      */
-    public int getDef();
+    public double getDef();
 }

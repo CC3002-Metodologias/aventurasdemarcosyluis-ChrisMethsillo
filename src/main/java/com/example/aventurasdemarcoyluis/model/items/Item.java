@@ -12,7 +12,7 @@ public interface Item {
      * Use the item in a player.
      * @param player player who will use the object
      */
-    void use(AbstractPlayers player);
+    void use(ItemUse player);
 
     /**
      * Return the item typeplayer who will use the object

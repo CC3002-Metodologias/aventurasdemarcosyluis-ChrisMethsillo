@@ -21,7 +21,7 @@ public class Luis extends AbstractPlayers implements LuisCombat {
      * @param maxFP Max fight points
      * @param LVL level of the Unit
      */
-    public Luis(int ATK, int DEF, double HP, double maxHP, int FP, int maxFP, int LVL) {
+    public Luis(int ATK, int DEF, double HP, double maxHP, double FP, double maxFP, int LVL) {
         super(ATK, DEF, HP, maxHP, FP, maxFP, LVL, PlayerType.LUIS);
     }
 
@@ -78,7 +78,7 @@ public class Luis extends AbstractPlayers implements LuisCombat {
         if(!isDeath() & hasEnoughFp(1)){
             double dmg=this.getAtk()*this.getLvl()/ enemy.getDef();
             enemy.getAtkByLuisNormal(dmg);
-            getAtkBySpiny(0.1*MAXHP());
+            getAtkBySpiny(0.1*getMAXHP());
             reduceFp(1);
         }
     }
